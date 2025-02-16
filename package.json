@@ -11,16 +11,10 @@
   "author": "Arpan Neupane",
   "license": "ISC",
   "dependencies": {
-    "@resvg/resvg-js": "^2.6.2",
-    "@vercel/og": "^0.6.5",
-    "express": "^4.21.2",
-    "next": "^15.1.7",
-    "puppeteer": "^24.2.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "satori": "^0.12.1",
-    "satori-html": "^0.3.2",
-    "sharp": "^0.33.5"
+    "@vercel/og": "^0.6.2",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
