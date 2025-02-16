@@ -29,13 +29,13 @@ const defaultHtml = `
 </html>
 `;
 
-// Main endpoint to convert HTML to image
-app.post("/convert", async (req, res) => {
+// Handle both GET and POST requests to /convert
+app.all("/convert", async (req, res) => {
   try {
     // Get HTML from request body or use default
-    const html = req.body.html || defaultHtml;
-    const width = req.body.width || 800;
-    const height = req.body.height || 600;
+    const html = (req.method === 'POST' && req.body.html) ? req.body.html : defaultHtml;
+    const width = (req.method === 'POST' && req.body.width) ? req.body.width : 800;
+    const height = (req.method === 'POST' && req.body.height) ? req.body.height : 600;
     
     // Launch browser
     const browser = await puppeteer.launch({
@@ -73,8 +73,8 @@ app.post("/convert", async (req, res) => {
 app.get("/", (req, res) => {
   res.send(`
     <h1>HTML to Image API</h1>
-    <p>Make a POST request to /convert with your HTML in the request body to get an image back.</p>
-    <p>Example:</p>
+    <p>Access /convert endpoint with either GET or POST to get an image back.</p>
+    <p>For POST requests, you can customize the HTML:</p>
     <pre>
     POST /convert
     Content-Type: application/json
@@ -85,6 +85,7 @@ app.get("/", (req, res) => {
       "height": 600
     }
     </pre>
+    <p>Or simply navigate to <a href="/convert">/convert</a> to get the default image.</p>
   `);
 });
 
